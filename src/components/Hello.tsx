@@ -4,16 +4,22 @@ import React from 'react';
 export interface Props {
   name: string;
   enthusiasmLevel?: number;
+  onDecrement?: ()=> void;
+  onIncrement?: ()=> void;
 }
 
-export default function Hello({name, enthusiasmLevel = 1}: Props) {
+export default function Hello({name, enthusiasmLevel = 1, onDecrement, onIncrement}: Props) {
   if (enthusiasmLevel <= 0) {
     throw new Error('You could be a little more enthusiastic. :D')
   }
-
+  console.log(name)
   return (
     <div>
       <h2>{name + getExclamationMarks(enthusiasmLevel)}</h2>
+      <div>
+        <button onClick={onDecrement}>-</button>
+        <button onClick={onIncrement}>+</button>
+      </div>
     </div>
   );
 }

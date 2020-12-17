@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Hello from './components/Hello'
+import Home from './pages/home';
 
 function App() {
   return (
     <div className="App">
-      <Hello name="Typescript" enthusiasmLevel={3} />
+      <Home />
     </div>
   );
 }
