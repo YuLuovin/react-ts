@@ -6,13 +6,14 @@ export interface Props {
   enthusiasmLevel?: number;
   onDecrement?: ()=> void;
   onIncrement?: ()=> void;
+  location: any;
 }
 
-export default function Hello({name, enthusiasmLevel = 1, onDecrement, onIncrement}: Props) {
+export default function Hello({name, enthusiasmLevel = 1, onDecrement, onIncrement, location}: Props) {
   if (enthusiasmLevel <= 0) {
     throw new Error('You could be a little more enthusiastic. :D')
   }
-  console.log(name)
+  console.log('hello',location)
   return (
     <div>
       <h2>{name + getExclamationMarks(enthusiasmLevel)}</h2>
