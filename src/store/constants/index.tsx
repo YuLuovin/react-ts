@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-redeclare */
 export const INCREMENT_ENTHUSIASM = "INCREMENT_ENTHUSIASM"; // 增加热忱度
 export type INCREMENT_ENTHUSIASM = typeof INCREMENT_ENTHUSIASM;
 

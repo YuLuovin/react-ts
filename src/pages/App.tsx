@@ -1,7 +1,6 @@
-import React from 'react';
+// import React from 'react';
 import './App.less';
 import LayoutPage from './layout'
-import { withRouter } from 'react-router-dom';
 
 function App(props:any) {
   console.log(props.history)
@@ -12,4 +11,4 @@ function App(props:any) {
   );
 }
 
-export default withRouter(App);
+export default App;
