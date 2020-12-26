@@ -1,55 +1,38 @@
 import React from 'react';
-import { BrowserRouter, NavLink, Link } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
-import { Layout, Menu } from 'antd';
+import { Layout } from 'antd';
 import routes from '../../router/index';
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
+import LayoutSider from './components/LayoutSider';
+import LayoutHeader from './components/LayoutHeader';
 import './index.less';
+import { Redirect } from 'react-router-dom';
 
-const { Header, Sider, Content } = Layout;
+const { Content } = Layout;
 
-class LayoutPage extends React.Component {
-  state = {
+interface IState {
+  collapsed: boolean;
+}
+
+class LayoutPage extends React.Component{
+  state: IState = {
     collapsed: false,
   };
 
-  toggle = () => {
+  toggle = ():void => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
   };
 
   render() {
+    const { collapsed } = this.state;
     return (
       <BrowserRouter>
         <Layout id="pages-layout">
-          <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-            <div className="logo">Ant Design</div>
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-              <Menu.Item key="1" icon={<UserOutlined />}>
-                <NavLink to="/dashboard">第一选项</NavLink>
-              </Menu.Item>
-              <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                <Link to="/MobXTest">第二选项</Link>
-              </Menu.Item>
-              <Menu.Item key="3" icon={<UploadOutlined />}>
-                nav 3
-              </Menu.Item>
-            </Menu>
-          </Sider>
+          <LayoutSider collapsed={collapsed}/>
           <Layout className="site-layout">
-            <Header className="site-layout-background" style={{ padding: 0 }}>
-              {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                className: 'trigger',
-                onClick: this.toggle,
-              })}
-            </Header>
+            <LayoutHeader collapsed={collapsed} toggle={this.toggle}/>
             <Content
               className="site-layout-background"
               style={{
@@ -59,6 +42,7 @@ class LayoutPage extends React.Component {
               }}
             >
               {renderRoutes(routes)}
+              {/* <Redirect to="/dashboard" from="/"/> */}
             </Content>
           </Layout>
         </Layout>

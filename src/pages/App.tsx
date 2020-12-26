@@ -2,11 +2,10 @@
 import './App.less';
 import LayoutPage from './layout'
 
-function App(props:any) {
-  console.log(props.history)
+function App() {
   return (
     <div className="App">
-      <LayoutPage/>
+      <LayoutPage />
     </div>
   );
 }

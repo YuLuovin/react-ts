@@ -1,19 +1,15 @@
-import React from 'react';
-
 // 组件要用到的属性
 export interface Props {
   name: string;
   enthusiasmLevel?: number;
   onDecrement?: ()=> void;
   onIncrement?: ()=> void;
-  location: any;
 }
 
-export default function Hello({name, enthusiasmLevel = 1, onDecrement, onIncrement, location}: Props) {
+export default function Hello({name, enthusiasmLevel = 1, onDecrement, onIncrement}: Props) {
   if (enthusiasmLevel <= 0) {
     throw new Error('You could be a little more enthusiastic. :D')
   }
-  console.log('hello',location)
   return (
     <div>
       <h2>{name + getExclamationMarks(enthusiasmLevel)}</h2>

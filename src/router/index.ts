@@ -1,24 +1,31 @@
 import Hello from '../containers/Hello';
 import MobxTest from '../components/MobXTest';
+import Third from '../pages/third';
 import NoMatch from '../components/NoMatch';
-
-type router = React.FC | React.Component
+import ChangeNumber from '../pages/changeNumber';
 
 interface Route {
   path?: string;
   exact?: boolean;
-  component: React.FC;
+  component: any;
 }
 
 const routes: Array<Route> = [
   {
-    path: '/',
-    exact: true,
+    path: '/dashboard',
     component: Hello
   },
   {
     path: '/MobXTest',
     component: MobxTest
+  },
+  {
+    path: '/third',
+    component: Third
+  },
+  {
+    path: '/changeNumber',
+    component: ChangeNumber
   },
   {
     component: NoMatch
