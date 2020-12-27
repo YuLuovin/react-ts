@@ -5,7 +5,8 @@ import {
   UserOutlined,
   VideoCameraOutlined,
   UploadOutlined,
-  BookTwoTone
+  BookTwoTone,
+  ShopFilled
 } from '@ant-design/icons';
 
 const { Sider } = Layout;
@@ -41,6 +42,9 @@ export default function LayoutSider(props:IProps) {
         </Menu.Item>
         <Menu.Item key="4" icon={<BookTwoTone />}>
           <Link to="/changeNumber">改变数字</Link>
+        </Menu.Item>
+        <Menu.Item key="5" icon={<ShopFilled />}>
+          <Link to="/shop">商城</Link>
         </Menu.Item>
       </Menu>
     </Sider>

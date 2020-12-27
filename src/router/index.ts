@@ -3,6 +3,7 @@ import MobxTest from '../components/MobXTest';
 import Third from '../pages/third';
 import NoMatch from '../components/NoMatch';
 import ChangeNumber from '../pages/changeNumber';
+import ShopPage from '../pages/shop';
 
 interface Route {
   path?: string;
@@ -26,6 +27,10 @@ const routes: Array<Route> = [
   {
     path: '/changeNumber',
     component: ChangeNumber
+  },
+  {
+    path: '/shop',
+    component: ShopPage
   },
   {
     component: NoMatch

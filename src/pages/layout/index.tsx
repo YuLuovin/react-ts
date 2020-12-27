@@ -6,7 +6,7 @@ import routes from '../../router/index';
 import LayoutSider from './components/LayoutSider';
 import LayoutHeader from './components/LayoutHeader';
 import './index.less';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 const { Content } = Layout;
 
