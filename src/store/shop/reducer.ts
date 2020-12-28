@@ -11,7 +11,7 @@ export function reducer(state = defaultShopData, action: ISaveShop) {
     case constants.SAVE_BANNER:
       return { ...state, banners: action.data };
     case constants.SAVE_RECOMMENDS:
-      return { ...state, banners: action.data };
+      return { ...state, recommends: action.data };
     default:
       return state;
   }

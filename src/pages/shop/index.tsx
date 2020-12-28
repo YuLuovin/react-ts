@@ -1,42 +1,56 @@
 import * as React from 'react';
 import axios from 'axios';
-import store from '../../store'
-import { saveBannerAction } from '../../store/shop/actionsCreator';
+import { saveBannerAction, saveRecommendsAction, ISaveShop} from '../../store/shop/actionsCreator';
+import { connect } from 'react-redux';
+import { StoreState } from '../../types';
+import { Dispatch } from 'redux';
+
 interface IState {
-  banners: Array<object>
+  banners: Array<object | null>;
+  recommends: Array<object | null>;
+  saveBanners: (data:Array<object>)=> void;
+  saveRecommends: (data:Array<object>)=> void;
 }
-export default class ShopPage extends React.Component<IState> {
-  state = {
-    banners: []
-  }
+class ShopPage extends React.Component<IState> {
   componentDidMount() {
     axios({
       url: "http://123.207.32.32:8000/home/multidata",
       method: "GET"
     }).then(res => {
       console.log(res)
-      if (res.data.data.banner && res.data.data.banner.list && res.data.data.banner.list.length) {
-        store.dispatch(saveBannerAction(res.data.data.banner.list))
-        setTimeout(() => {
-          console.log(store.getState().shopData.banners)
-          console.log(this.state)
-        }, 5000);
-      }
-    })
-
-    store.subscribe(() => {
-      this.setState({
-        banners: store.getState().shopData.banners
-      })
+      const data = res.data.data;
+      this.props.saveBanners(data.banner.list)
+      this.props.saveRecommends(data.recommend.list)
     })
   }
   render() {
     return (
       <div>
-        {this.state.banners.map((item:any, index) => {
+        {this.props.banners.map((item:any, index) => {
           return <img src={item.image} alt="hello" key={index}/>
         })}
+        <div>
+          {this.props.recommends.map((item:any, index) => {
+            return <img src={item.image} alt="hello" key={index}/>
+          })}
+        </div>
       </div>
     );
   }
 }
+
+function mapStateToProps(state:StoreState) {
+  return {
+    banners: state.shopData.banners,
+    recommends: state.shopData.recommends
+  }
+}
+
+function mapDispatchToProps(dispatch:Dispatch<ISaveShop>) {
+  return {
+    saveBanners: (data: Array<object>)=> dispatch(saveBannerAction(data)),
+    saveRecommends: (data: Array<object>)=> dispatch(saveRecommendsAction(data))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShopPage)
