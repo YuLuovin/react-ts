@@ -25,7 +25,7 @@ export const saveRecommendsAction = (data:Array<object>): ISaveRecommendsAction 
 })
 
 // 使用react-thunk ，但在ts中暂时没解决报错问题
-export const getMutipleData = (data?:any) => (dispatch: Dispatch<ISaveShop>):void => {
+export const getMutipleData = (data?:any) => (dispatch: Dispatch<ISaveShop>) => {
   axios({
     url: "http://123.207.32.32:8000/home/multidata",
     method: "GET"
