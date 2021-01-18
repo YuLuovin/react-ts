@@ -22,6 +22,9 @@ class LayoutPage extends React.Component{
   toggle = ():void => {
     this.setState({
       collapsed: !this.state.collapsed,
+    },
+    () => {
+      console.log(this.state.collapsed)
     });
   };
 
@@ -30,15 +33,14 @@ class LayoutPage extends React.Component{
     return (
       <BrowserRouter>
         <Layout id="pages-layout">
-          <LayoutSider collapsed={collapsed}/>
-          <Layout className="site-layout">
+          <LayoutSider collapsed={collapsed} />
+          <Layout className="site-layout" style={{marginLeft: this.state.collapsed ? '80px' : '200px'}}>
             <LayoutHeader collapsed={collapsed} toggle={this.toggle}/>
             <Content
-              className="site-layout-background"
+              className="site-layout-background content-wrap"
               style={{
                 margin: '24px 16px',
-                padding: 24,
-                minHeight: 280,
+                padding: 24
               }}
             >
               {renderRoutes(routes)}

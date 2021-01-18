@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
-import { incrementNumber, addNumber, decrementNumber, subNumber, ChangeNumber } from '../../store/changeNumber/actionsCreator';
+import { incrementNumber, addNumber, decrementNumber, subNumber, ChangeNumber } from '../../../store/changeNumber/actionsCreator';
 import { connect } from 'react-redux';
-import { StoreState } from '../../types';
+import { StoreState } from '../../../types';
 
 interface IProps {
   counter: number;

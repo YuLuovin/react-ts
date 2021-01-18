@@ -2,14 +2,12 @@ import { Layout, Menu } from 'antd';
 import { NavLink, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  BookTwoTone,
-  ShopFilled
+  DashboardOutlined,
+  AndroidOutlined
 } from '@ant-design/icons';
 
 const { Sider } = Layout;
+const { SubMenu } = Menu;
 
 interface IProps {
   collapsed: boolean;
@@ -28,24 +26,20 @@ export default function LayoutSider(props:IProps) {
     window.sessionStorage.setItem('selectKey', JSON.stringify(data.selectedKeys));
   }
   return (
-    <Sider trigger={null} collapsible collapsed={props.collapsed} theme="dark">
+    <Sider trigger={null} collapsible collapsed={props.collapsed} theme="dark" className="sider-wrap">
       <div className="logo"></div>
       <Menu theme="dark" mode="inline" selectedKeys={selectKey} onSelect={handleOnSelect}>
-        <Menu.Item key="1" icon={<UserOutlined />}>
-          <NavLink to="/dashboard">第一人称</NavLink>
+        <Menu.Item key="1" icon={<DashboardOutlined />}>
+          <NavLink to="/dashboard">仪表盘</NavLink>
         </Menu.Item>
-        <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-          <Link to="/MobXTest">第二人称</Link>
-        </Menu.Item>
-        <Menu.Item key="3" icon={<UploadOutlined />}>
-          <Link to="/third">第三人称</Link>
-        </Menu.Item>
-        <Menu.Item key="4" icon={<BookTwoTone />}>
-          <Link to="/changeNumber">改变数字</Link>
-        </Menu.Item>
-        <Menu.Item key="5" icon={<ShopFilled />}>
-          <Link to="/shop">商城</Link>
-        </Menu.Item>
+        <SubMenu key="2" icon={<AndroidOutlined />} title="我的Demo">
+          <Menu.Item key="2-1">
+            <Link to="/mydemo/changeNumber">改变数字</Link>
+          </Menu.Item>
+          <Menu.Item key="2-2">
+            <Link to="/mydemo/axios">商城</Link>
+          </Menu.Item>
+        </SubMenu>
       </Menu>
     </Sider>
   );

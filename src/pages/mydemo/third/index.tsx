@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useRef } from 'react';
-import ThemeContext from '../../components/MyContext';
+import ThemeContext from '@/components/MyContext';
 
 interface ITheme {
   color: string;

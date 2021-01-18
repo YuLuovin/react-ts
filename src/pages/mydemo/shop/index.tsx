@@ -1,8 +1,8 @@
 import * as React from 'react';
 import axios from 'axios';
-import { saveBannerAction, saveRecommendsAction, ISaveShop} from '../../store/shop/actionsCreator';
+import { saveBannerAction, saveRecommendsAction, ISaveShop} from '../../../store/shop/actionsCreator';
 import { connect } from 'react-redux';
-import { StoreState } from '../../types';
+import { StoreState } from '../../../types';
 import { Dispatch } from 'redux';
 
 interface IState {
@@ -25,7 +25,7 @@ class ShopPage extends React.Component<IState> {
   }
   render() {
     return (
-      <div>
+      <div style={{backgroundColor: '#fff'}}>
         {this.props.banners.map((item:any, index) => {
           return <img src={item.image} alt="hello" key={index}/>
         })}
