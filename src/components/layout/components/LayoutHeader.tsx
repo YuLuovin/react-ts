@@ -1,14 +1,19 @@
 import React from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Layout } from 'antd';
+import { saveUserAction } from '@/store/user/actionCreator';
+// import { RouteComponentProps } from 'react-router-dom';
+import store from '@/store';
 const { Header } = Layout;
 interface IProps {
   collapsed: boolean;
-  toggle(): void
+  toggle(): void;
+  history: any
 }
-export default function LayoutHeader(props:IProps) {
+function LayoutHeader(props:IProps) {
   const exit = () => {
-    console.log("退出菜单")
+    store.dispatch(saveUserAction({username: '', jumpPath: ''}))
+    props.history.push('/login');
   }
   return (
     <Header className="site-layout-background layout-header" style={{ padding: 0 }}>
@@ -19,7 +24,7 @@ export default function LayoutHeader(props:IProps) {
       <div className="operate">
         <ul>
           <li>
-            <span>雨落</span>
+            <span>{store.getState().userData.username}</span>
           </li>
           <li>
             <span style={{cursor: 'pointer'}} onClick={() => exit()}>登出</span>
@@ -29,3 +34,5 @@ export default function LayoutHeader(props:IProps) {
     </Header>
   );
 }
+
+export default LayoutHeader

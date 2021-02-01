@@ -8,12 +8,18 @@ export interface CounterState {
 }
 
 export interface ShopState {
-  banners: Array<object | null>,
-  recommends: Array<object | null>
+  banners: Array<object | null>;
+  recommends: Array<object | null>;
+}
+
+export interface UserState {
+  username: string;
+  jumpPath: string;
 }
 
 export interface StoreState {
   enthusiasm: EnthusiasmState,
   changeNumber: CounterState,
-  shopData: ShopState
+  shopData: ShopState,
+  userState: UserState
 }

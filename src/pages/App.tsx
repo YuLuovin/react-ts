@@ -1,13 +1,21 @@
 // import React from 'react';
 import './App.less';
-import LayoutPage from '../components/layout'
-
+import routes from '@/router'
+import { renderRoutes } from 'react-router-config';
+import { withRouter } from 'react-router-dom';
+// import { Redirect, Switch } from 'react-router-dom';
+// import { Redirect, Switch } from 'react-router';
 function App() {
   return (
     <div className="App">
-      <LayoutPage />
+      {
+        renderRoutes(routes)
+      }
+      {/* <Switch>
+        <Redirect to={'/dashboard'}/>
+      </Switch> */}
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);

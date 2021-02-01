@@ -1,6 +1,15 @@
-interface IProps {}
-export default function Layout(params:IProps) {
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+import LoginForm from './LoginForm';
+interface IProps extends RouteComponentProps {}
+function Layout(params:IProps) {
+  console.log(params)
   return (
-    <div>登录页</div>
+    <div className="login-container">
+      <div className="login-form-wrap">
+        <LoginForm history={params.history} />
+      </div>
+    </div>
   );
 }
+
+export default withRouter(Layout);

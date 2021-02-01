@@ -1,12 +1,12 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, withRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Layout } from 'antd';
-import routes from '../../router/index';
+// import routes from '../../router/index';
 import LayoutSider from './components/LayoutSider';
 import LayoutHeader from './components/LayoutHeader';
 import './index.less';
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router';
 
 const { Content } = Layout;
 
@@ -14,7 +14,9 @@ interface IState {
   collapsed: boolean;
 }
 
-class LayoutPage extends React.Component{
+// interface IProps extends RouteConfig, RouteComponentProps {}
+
+class LayoutPage extends React.Component<any, IState>{
   state: IState = {
     collapsed: false,
   };
@@ -35,7 +37,7 @@ class LayoutPage extends React.Component{
         <Layout id="pages-layout">
           <LayoutSider collapsed={collapsed} />
           <Layout className="site-layout" style={{marginLeft: this.state.collapsed ? '80px' : '200px'}}>
-            <LayoutHeader collapsed={collapsed} toggle={this.toggle}/>
+            <LayoutHeader collapsed={collapsed} toggle={this.toggle} history={this.props.history}/>
             <Content
               className="site-layout-background content-wrap"
               style={{
@@ -43,8 +45,8 @@ class LayoutPage extends React.Component{
                 padding: 24
               }}
             >
-              {renderRoutes(routes)}
-              {/* <Redirect to="/dashboard" from="/"/> */}
+              { renderRoutes(this.props.route.routes) }
+              <Redirect to="/dashboard" from="/"/>
             </Content>
           </Layout>
         </Layout>
@@ -53,4 +55,4 @@ class LayoutPage extends React.Component{
   }
 }
 
-export default LayoutPage;
+export default withRouter(LayoutPage);
