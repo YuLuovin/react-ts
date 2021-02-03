@@ -1,12 +1,12 @@
 import React from 'react';
-import { BrowserRouter, withRouter } from 'react-router-dom';
-import { renderRoutes } from 'react-router-config';
+import { withRouter, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
-// import routes from '../../router/index';
 import LayoutSider from './components/LayoutSider';
 import LayoutHeader from './components/LayoutHeader';
+import { RouteWithSubRoutes } from '@/pages/App';
+import { ISaveUserAction, saveUserAction } from '@/store/user/actionCreator';
 import './index.less';
-import { Redirect } from 'react-router';
+import store from '@/store';
 
 const { Content } = Layout;
 
@@ -21,6 +21,20 @@ class LayoutPage extends React.Component<any, IState>{
     collapsed: false,
   };
 
+  componentDidMount() {
+    // 没有登录不能进入系统
+    if (!store.getState().userData.jumpPath) {
+      const sessionUser = window.sessionStorage.getItem('user')
+      if (sessionUser) {
+        store.dispatch(saveUserAction(JSON.parse(sessionUser)))
+        return
+      }
+      this.props.history.push('/login')
+    }
+
+    console.log(this.props)
+  }
+
   toggle = ():void => {
     this.setState({
       collapsed: !this.state.collapsed,
@@ -33,7 +47,6 @@ class LayoutPage extends React.Component<any, IState>{
   render() {
     const { collapsed } = this.state;
     return (
-      <BrowserRouter>
         <Layout id="pages-layout">
           <LayoutSider collapsed={collapsed} />
           <Layout className="site-layout" style={{marginLeft: this.state.collapsed ? '80px' : '200px'}}>
@@ -45,12 +58,14 @@ class LayoutPage extends React.Component<any, IState>{
                 padding: 24
               }}
             >
-              { renderRoutes(this.props.route.routes) }
-              <Redirect to="/dashboard" from="/"/>
+              <Switch>
+                {
+                  this.props.routes.map((route: any, i: number) => <RouteWithSubRoutes key={i} {...route} />)
+                }
+              </Switch>
             </Content>
           </Layout>
         </Layout>
-      </BrowserRouter>
     );
   }
 }

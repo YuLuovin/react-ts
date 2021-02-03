@@ -30,6 +30,7 @@ const LoginForm = (props: any) => {
       username: values.username,
       jumpPath: allPath
     }
+    window.sessionStorage.setItem('user', JSON.stringify(paramsData))
     // 将用户数据存入redux
     props.onSave(paramsData)
     props.history.push('/')

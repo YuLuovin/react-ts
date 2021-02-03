@@ -4,7 +4,7 @@ export default function RouteWrap(props :RouteConfig) {
   // console.log('wrap',props)
   return (
     <>
-      { renderRoutes(props.route.routes) }
+      { renderRoutes(props.routes) }
     </>
   );
 }

@@ -1,6 +1,5 @@
 import Dashboard from '@pages/dashboard';
 import RouteWrap from '@components/RouteWrap';
-import NoMatch from '../components/NoMatch';
 import ChangeNumber from '../pages/mydemo/changeNumber';
 import ShopPage from '../pages/mydemo/shop';
 import Login from '@pages/login';
@@ -17,8 +16,12 @@ interface IRoute {
 
 const routes: Array<IRoute> = [
   {
-    path: '/',
+    path: '/login',
     exact: true,
+    component: Login
+  },
+  {
+    path: '/',
     component: LayoutPage,
     routes: [
       {
@@ -44,11 +47,7 @@ const routes: Array<IRoute> = [
         ]
       },
     ]
-  },
-  {
-    path: '/login',
-    component: Login
-  },
+  }
 ]
 
 export default routes;

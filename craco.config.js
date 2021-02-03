@@ -1,7 +1,7 @@
 const CracoLessPlugin = require('craco-less');
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin');
 const path = require('path');
-const publicPath = process.env.NODE_ENV === 'development' ? '/' : '/react-ts/';
+const publicPath = process.env.NODE_ENV === 'development' ? '/' : '/';
 
 module.exports = {
   plugins: [
@@ -19,10 +19,10 @@ module.exports = {
   ],
   webpack: {
     configure: (webpackConfig, {env, paths}) => {
-      paths.appBuild = 'docs'
+      paths.appBuild = 'build'
       webpackConfig.output = {
         ...webpackConfig.output,
-        path: path.resolve(__dirname, 'docs'),
+        path: path.resolve(__dirname, 'build'),
         publicPath: publicPath
       }
       return webpackConfig
