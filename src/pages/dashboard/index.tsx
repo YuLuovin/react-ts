@@ -1,8 +1,11 @@
-interface IProps {
+import CardArea from './childCpn/CardArea';
 
-}
+
+interface IProps {}
 export default function Dashboard(props: IProps) {
   return (
-    <div>仪表盘</div>
+    <div className="dashboard-container">
+      <CardArea/>
+    </div>
   );
 }
