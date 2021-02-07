@@ -4,7 +4,7 @@ import { Layout } from 'antd';
 import LayoutSider from './components/LayoutSider';
 import LayoutHeader from './components/LayoutHeader';
 import { RouteWithSubRoutes } from '@/pages/App';
-import { ISaveUserAction, saveUserAction } from '@/store/user/actionCreator';
+import { saveUserAction } from '@/store/user/actionCreator';
 import './index.less';
 import store from '@/store';
 
@@ -31,8 +31,6 @@ class LayoutPage extends React.Component<any, IState>{
       }
       this.props.history.push('/login')
     }
-
-    console.log(this.props)
   }
 
   toggle = ():void => {
